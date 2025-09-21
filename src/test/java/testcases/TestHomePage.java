@@ -14,13 +14,22 @@ public class TestHomePage extends DriverSetup {
     @BeforeMethod
     public void loadHomePageForTest(){
         homePage.loadHomePage();
+        homePage.clickOnElement(homePage.pop_up_btn);
     }
 
     @Test(description = "Test Home Page Title", priority = 1, groups = "Sanity, Regression")
     @Description ("Allure - Test Home Page Title")
     public void TestHomePageTitle(){
-        homePage.addScreenshot("Home page");
+//        homePage.addScreenshot("Home page");
         Assert.assertEquals(getDriver().getTitle(), homePage.title);
+    }
+
+    @Test(priority = 0, description = "Verify different types of books are displayed on the homepage.")
+    public void TestBookTypesDisplayed(){
+        homePage.addScreenshot("Home page");
+        homePage.isVisible(homePage.book_types1);
+//        homePage.clickOnElement(homePage.login_signup_btn);
+//        Assert.assertFalse(getDriver().getCurrentUrl().equals(homePage.url));
     }
 
     @Test(priority = 0, groups = "Sanity")

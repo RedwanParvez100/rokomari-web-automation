@@ -40,8 +40,9 @@ public class TestLoginPage extends DriverSetup {
         loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
 //        loginPage.writeOnElement(loginPage.password_input_box, "");
         loginPage.clickOnElement(loginPage.login_btn);
-        Assert.assertEquals(loginPage.getElement(loginPage.otp_shown_msg).getText(),"OTP sent to your email. Please enter OTP bellow.");
         loginPage.clickOnElement(loginPage.otp_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.otp_shown_msg).getText(),"OTP sent to your email. Please enter OTP bellow.");
+
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         Assert.assertTrue(loginPage.isVisible(loginPage.user_icon));
 
