@@ -6,8 +6,8 @@ public class HomePage extends BasePage{
 
     public String url= "https://www.rokomari.com/";
     public String title = "Buy Book Online - Best Online Book Shop in Bangladesh | Rokomari.com";
-    public By pop_up_btn = By.xpath("//button[@class='popup-modal__close-btn close-btn-outside js--popup-modal__close-btn']//i[@class='ion-close-round']");
-    public By login_signup_btn = By.xpath("//a[normalize-space()='Hello, Sign in']");
+    public By pop_up_btn = By.xpath("//button[@class='absolute bg-white rounded-full p-2 shadow']//*[name()='svg']");
+    public By login_signup_btn = By.xpath("//div[normalize-space()='Sign In']");
     public By sign_out_btn = By.xpath("//a[normalize-space()='Sign Out']");
 
     public By book_types1 = By.xpath("//h1[contains(text(),'একাডেমিক বই')]");

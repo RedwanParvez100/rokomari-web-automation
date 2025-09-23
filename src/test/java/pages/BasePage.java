@@ -1,10 +1,8 @@
 package pages;
 
 //import io.qameta.allure.Allure;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -63,5 +61,20 @@ public class BasePage {
     public void waitForElementToBeClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void hoverOnElement(By locator) {
+        Actions actions = new Actions(getDriver());
+        actions.clickAndHold(getElement(locator)).build().perform();
+    }
+
+    public void scrollToAElement(By locator) {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+
+        // Scroll element into view
+        js.executeScript("arguments[0].scrollIntoView(true);", getElement(locator));
+
+        // Add small offset if sticky header hides it
+        js.executeScript("window.scrollBy(0, -100);");
     }
 }
