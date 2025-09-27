@@ -16,7 +16,7 @@ public class TestHomePage extends DriverSetup {
     @BeforeMethod
     public void loadHomePageForTest(){
         homePage.loadHomePage();
-        homePage.clickOnElement(homePage.pop_up_btn);
+//        homePage.clickOnElement(homePage.pop_up_btn);
     }
 
     @Test(description = "Test Home Page Title", priority = 0, groups = "Sanity, Regression")

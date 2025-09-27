@@ -3,6 +3,7 @@ package testcases;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HeaderPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.DataSet;
@@ -13,14 +14,134 @@ import java.time.Duration;
 public class TestLoginPage extends DriverSetup {
 
     HomePage homePage = new HomePage();
+    HeaderPage headerPage = new HeaderPage();
     LoginPage loginPage = new LoginPage();
 
     @BeforeMethod
     public  void setup_class(){
         homePage.loadHomePage();
-        homePage.clickOnElement(homePage.pop_up_btn);
+//        homePage.clickOnElement(homePage.pop_up_btn);
         homePage.clickOnElement(homePage.login_signup_btn);
     }
+
+    @Test(priority = 0, description = "Verify the Sign In page title.")
+    public void TestSignInPagetitle(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.sign_in_page_title).getText(),"সাইন ইন করুন");
+    }
+
+    @Test(priority = 1, description = "Verify that the Sign in button is present.")
+    public void TestSignInButtonIsPresent(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        Assert.assertTrue(loginPage.isVisible(loginPage.sign_in_btn));
+    }
+
+    @Test(priority = 2, description = "Verify by clicking on the submit button for blank input.")
+    public void TestSubmitButtonWithBlankInput(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.blank_input_msg).getText(),"Please enter a valid email or phone number");
+    }
+
+    @Test(priority = 3, description = "Verify that the system shows an error when the email is missing “@” symbol")
+    public void TestEmailWithoutSymbol(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "userexample.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"Invalid email! Please enter a valid email or phone number.");
+    }
+
+    @Test(priority = 4, description = "Verify that the system shows an error when the email is missing domain part")
+    public void TestEmailWithoutDomainPart(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "user@");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"Invalid email! Please enter a valid email or phone number.");
+    }
+
+    @Test(priority = 5, description = "Verify that the system shows an error when the email is missing username part")
+    public void TestEmailWithOutUsernamePart(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "@gmail.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"Invalid email! Please enter a valid email or phone number.");
+    }
+
+    @Test(priority = 6, description = "Verify that the system rejects an email with space")
+    public void TestEmailWithSpace(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "user @gmail.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"Invalid email! Please enter a valid email or phone number.");
+    }
+
+    @Test(priority = 7, description = "Verify that the system rejects an email with invalid characters")
+    public void TestEmailWithInvalidCharacters(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "user!@gmail.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"Invalid email! Please enter a valid email or phone number.");
+    }
+
+
+    @Test(priority = 8, description = "Verify that the system accepts a valid email address")
+    public void TestLoginWithValidEmail(){
+//        loginPage.addScreenshot("Login page");
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
+//        loginPage.writeOnElement(loginPage.password_input_box, "");
+        loginPage.clickOnElement(loginPage.next_btn);
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+//        loginPage.clickOnElement(loginPage.login_btn);
+
+        Assert.assertEquals(loginPage.getElement(loginPage.otp_shown_msg).getText(),"OTP sent to your phone. Please enter OTP bellow.");
+        Assert.assertTrue(loginPage.isVisible(loginPage.user_icon));
+
+    }
+
+    @Test(priority = 9, description = "Verify that the system accepts a valid email address with dots in the username.")
+    public void TestValidEmailWithDots(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "first.last@gmail.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"OTP sent to your phone. Please enter OTP bellow.");
+    }
+
+    @Test(priority = 10, description = "Verify that the system accepts a valid email address with subdomain")
+    public void TestValidEmailWithSubdomain(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "user@mail.example.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"OTP sent to your phone. Please enter OTP bellow.");
+    }
+
+    @Test(priority = 11, description = "Verify that the system accepts a valid email address with different domains")
+    public void TestValidEmailWithDifferentSubdomain() throws InterruptedException {
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "user@outlook.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        headerPage.clickOnElement(headerPage.website_logo);
+        Thread.sleep(2000);
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "user@hotmail.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        headerPage.clickOnElement(headerPage.website_logo);
+        Thread.sleep(2000);
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "user@protonmail.com");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"OTP sent to your phone. Please enter OTP bellow.");
+    }
+
+    @Test(priority = 12, description = "Verify that the system accepts a valid email address with uppercase characters.")
+    public void TestValidEmailWithUppercase(){
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+        loginPage.writeOnElement(loginPage.email_input_box, "USER2025@GMAIL.COM");
+        loginPage.clickOnElement(loginPage.next_btn);
+        Assert.assertEquals(loginPage.getElement(loginPage.invalid_email_msg).getText(),"OTP sent to your phone. Please enter OTP bellow.");
+    }
+
+
 
     /*
     @Test
@@ -34,21 +155,8 @@ public class TestLoginPage extends DriverSetup {
     }
  */
 
-    @Test
-    public void testLoginWithValidCredentials(){
-//        loginPage.addScreenshot("Login page");
-        loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
-//        loginPage.writeOnElement(loginPage.password_input_box, "");
-        loginPage.clickOnElement(loginPage.login_btn);
-        loginPage.clickOnElement(loginPage.otp_btn);
-        Assert.assertEquals(loginPage.getElement(loginPage.otp_shown_msg).getText(),"OTP sent to your email. Please enter OTP bellow.");
 
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        Assert.assertTrue(loginPage.isVisible(loginPage.user_icon));
-
-//        Assert.assertFalse(loginPage.isVisible(loginPage.login_btn));
-    }
-
+/*
 
     @Test
     public void testLoginWithInvalidPassword(){
@@ -106,4 +214,6 @@ public class TestLoginPage extends DriverSetup {
             Assert.assertEquals(loginPage.getElement(loginPage.error_msg).getText(), error_msg);
         Assert.assertTrue(loginPage.isVisible(loginPage.login_btn));
     }
+
+ */
 }
