@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 
-import java.security.PublicKey;
 
 public class HeaderPage extends BasePage{
 

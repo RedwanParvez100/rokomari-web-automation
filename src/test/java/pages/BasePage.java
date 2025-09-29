@@ -63,6 +63,13 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    public void waitAndClick(By locator) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
+    }
+
+
     public void hoverOnElement(By locator) {
         Actions actions = new Actions(getDriver());
         actions.clickAndHold(getElement(locator)).build().perform();

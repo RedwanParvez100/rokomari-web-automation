@@ -86,14 +86,10 @@ public class TestLoginPage extends DriverSetup {
 
     @Test(priority = 8, description = "Verify that the system accepts a valid email address")
     public void TestLoginWithValidEmail(){
-//        loginPage.addScreenshot("Login page");
         loginPage.clickOnElement(loginPage.sign_in_btn);
         loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
-//        loginPage.writeOnElement(loginPage.password_input_box, "");
         loginPage.clickOnElement(loginPage.next_btn);
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-//        loginPage.clickOnElement(loginPage.login_btn);
-
         Assert.assertEquals(loginPage.getElement(loginPage.otp_shown_msg).getText(),"OTP sent to your phone. Please enter OTP bellow.");
         Assert.assertTrue(loginPage.isVisible(loginPage.user_icon));
 
