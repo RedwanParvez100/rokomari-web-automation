@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.ByteArrayInputStream;
 import java.time.Duration;
+import java.util.List;
 
 import static utilities.DriverSetup.getDriver;
 
@@ -60,11 +61,17 @@ public class BasePage {
 
     public void waitForElementToBeClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
+    }
+
+    public void waitForElementVisible(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public void waitAndClick(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
     }
@@ -75,13 +82,46 @@ public class BasePage {
         actions.clickAndHold(getElement(locator)).build().perform();
     }
 
-    public void scrollToAElement(By locator) {
+//    public void scrollToAElement(By locator) {
+//        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+//
+//        // Scroll element into view
+//        js.executeScript("arguments[0].scrollIntoView(true);", getElement(locator));
+//
+//        // Add small offset if sticky header hides it
+//        js.executeScript("window.scrollBy(0, -100);");
+//    }
+
+    public void scrollToAElement(By locator, int offset) {
+        WebElement element = getElement(locator);
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
 
-        // Scroll element into view
-        js.executeScript("arguments[0].scrollIntoView(true);", getElement(locator));
-
-        // Add small offset if sticky header hides it
-        js.executeScript("window.scrollBy(0, -100);");
+        if (offset != 0) {
+            js.executeScript("window.scrollBy(0, arguments[0]);", offset);
+        }
     }
+
+    public void safeClick(By locator) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        // Scroll element to the center
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+
+        try {
+            // Wait until clickable and click
+            wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        } catch (ElementClickInterceptedException e) {
+            // Fallback: JS click
+            js.executeScript("arguments[0].click();", element);
+        }
+    }
+
+
+
+
+
+
 }

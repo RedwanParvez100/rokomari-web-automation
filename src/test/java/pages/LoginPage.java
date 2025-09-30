@@ -4,13 +4,13 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage{
 
-    public By sign_in_btn = By.xpath("//div[normalize-space()='Sign In']");
-    public By email_input_box = By.xpath("//input[@id='emailOrPhone']");
+    public By sign_in_btn = By.xpath("//a[@class='logged-out-user-menu-btn']");
+    public By email_input_box = By.xpath("//input[@placeholder='Email or phone']");
     public  By password_input_box = By.xpath("//input[@name='password']");
-    public  By next_btn = By.xpath("//button[contains(text(),'পরবর্তী')]");
-    public By login_btn = By.xpath("//button[normalize-space()='Login']");
+    public  By next_btn = By.xpath("//button[@id='js--btn-next']");
+    public By login_btn = By.xpath("//form[@id='otp-login-form']//button[@type='submit'][normalize-space()='Login']");
     public By otp_shown_msg = By.xpath("//p[@class='text-red-500 text-sm text-']");
-    public By user_icon = By.xpath("//span[@class='truncate max-w-[110px]']");
+    public By user_icon = By.xpath("//span[@class='user-name']");
     public  By error_msg = By.xpath("//input[@name='password']/following-sibling::p");
 
     public By sign_in_page_title = By.xpath("//h1[@class='text-start w-fit text-[24px] font-medium']");
