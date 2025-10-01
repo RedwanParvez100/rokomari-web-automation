@@ -17,7 +17,7 @@ public class HeaderPage extends BasePage{
 
     public By menubar = By.xpath("//div[@class='menu_menuContainer__9GaZV']");
     public By menubar_items_1st = By.xpath("//a[@class='menu_menuLink___xE7K false text-[18px]']//span[contains(text(),'বই')]");
-    public By menubar_items_last = By.xpath("//span[contains(text(),'আজকের অফার !')]");
+    public By menubar_items_last = By.xpath("//a[contains(text(),'আজকের অফার !')]");
 
     public By search_bar = By.xpath("//input[@id='desktop_search_field']");
     public By academic_book_1 = By.xpath("//img[@alt='বিজ্ঞান প্রথম বর্ষ category image']");

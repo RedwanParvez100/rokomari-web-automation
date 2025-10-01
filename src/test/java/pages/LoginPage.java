@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 public class LoginPage extends BasePage{
 
     public By sign_in_btn = By.xpath("//a[@class='logged-out-user-menu-btn']");
+    public By sign_out_btn = By.xpath("//a[@class='dropdown-item dropdown-item-new js--logout-button']");
     public By email_input_box = By.xpath("//input[@placeholder='Email or phone']");
     public  By password_input_box = By.xpath("//input[@name='password']");
     public  By next_btn = By.xpath("//button[@id='js--btn-next']");

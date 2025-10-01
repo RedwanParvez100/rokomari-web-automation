@@ -6,9 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.ByteArrayInputStream;
 import java.time.Duration;
-import java.util.List;
 
 import static utilities.DriverSetup.getDriver;
 
@@ -59,22 +57,31 @@ public class BasePage {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public void waitForElementToBeClickable(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        element.click();
-    }
 
     public void waitForElementVisible(By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public void waitAndClick(By locator) {
+    public void waitForElementToBeClickable(By locator) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
     }
+
+    public void WaitAndAutoClick(By locator) {
+        try {
+            // Wait 15 seconds
+            Thread.sleep(15000);
+
+            // Click the login button
+            WebElement element = getDriver().findElement(locator);
+            element.click();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     public void hoverOnElement(By locator) {
