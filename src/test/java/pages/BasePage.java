@@ -44,6 +44,10 @@ public class BasePage {
         return getDriver().getTitle();
     }
 
+    public String getElementText(By locator) {
+        return getElement(locator).getText();
+    }
+
     public String getPageUrl(){
         return getDriver().getCurrentUrl();
     }
