@@ -87,11 +87,17 @@ public class BasePage {
     }
 
 
+//    public void hoverOnElement(By locator) {
+//        Actions actions = new Actions(getDriver());
+//        actions.clickAndHold(getElement(locator)).build().perform();
+//    }
 
     public void hoverOnElement(By locator) {
+        WebElement element = getElement(locator); // ensure element is visible
         Actions actions = new Actions(getDriver());
-        actions.clickAndHold(getElement(locator)).build().perform();
+        actions.moveToElement(element).perform(); // proper hover
     }
+
 
 //    public void scrollToAElement(By locator) {
 //        JavascriptExecutor js = (JavascriptExecutor) getDriver();
@@ -103,15 +109,31 @@ public class BasePage {
 //        js.executeScript("window.scrollBy(0, -100);");
 //    }
 
-    public void scrollToAElement(By locator, int offset) {
-        WebElement element = getElement(locator);
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);", element);
+//    public void scrollToAElement(By locator, int offset) {
+//        WebElement element = getElement(locator);
+//        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+//        js.executeScript("arguments[0].scrollIntoView(true);", element);
+//
+//        if (offset != 0) {
+//            js.executeScript("window.scrollBy(0, arguments[0]);", offset);
+//        }
+//    }
 
+    public void scrollToAElement(By locator, int offset) {
+        // Wait for element to be present and visible
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+        // Scroll element into view, center it in the viewport
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+
+        // Apply additional offset if needed
         if (offset != 0) {
             js.executeScript("window.scrollBy(0, arguments[0]);", offset);
         }
     }
+
 
     public void safeClick(By locator) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));

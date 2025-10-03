@@ -54,6 +54,30 @@ public class TestBooksDisplay extends DriverSetup {
         booksDisplayPage.scrollToAElement(booksDisplayPage.discount_tag6, -100);
         booksDisplayPage.waitForElementVisible(booksDisplayPage.discount_tag6, 10);
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.discount_tag6));
+    }
 
+    @Test(priority = 2, description = "Verify Hover Behavior on Book Thumbnail")
+    public void TestHoverBehaviorBookThumbnail(){
+        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_whole_section, 100);
+//        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book1);
+//        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book1));
+        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book3);
+        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book5);
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book3));
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book5));
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.hover_book5_text),"Add to Cart");
+    }
+
+    @Test(priority = 3, description = "Verify that the book's author name is correctly displayed.")
+    public void TestbooksAuthorNameDisplayed(){
+        booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1));
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name2));
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name3));
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name4));
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1),"হুমায়ূন আহমেদ");
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name2),"কাজী নজরুল ইসলাম");
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name3),"মানিক বন্দ্যোপাধ্যায়");
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name4),"কাজী আনোয়ার হোসেন");
     }
 }
