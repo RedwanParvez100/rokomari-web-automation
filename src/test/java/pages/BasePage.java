@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Set;
 
 import static utilities.DriverSetup.getDriver;
 
@@ -151,6 +152,28 @@ public class BasePage {
             js.executeScript("arguments[0].click();", element);
         }
     }
+
+    public void clickAndSwitchToNewTab(By locator) {
+        // Click the element
+        safeClick(locator);
+
+        // Store current window handle
+        String parentTab = getDriver().getWindowHandle();
+
+        // Wait until new tab opens
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(driver -> driver.getWindowHandles().size() > 1);
+
+        // Switch to the new tab
+        Set<String> allTabs = getDriver().getWindowHandles();
+        for (String tab : allTabs) {
+            if (!tab.equals(parentTab)) {
+                getDriver().switchTo().window(tab);
+                break;
+            }
+        }
+    }
+
 
 
 
