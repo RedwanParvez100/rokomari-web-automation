@@ -69,7 +69,7 @@ public class TestBooksDisplay extends DriverSetup {
     }
 
     @Test(priority = 3, description = "Verify that the book's author name is correctly displayed.")
-    public void TestbooksAuthorNameDisplayed() {
+    public void TestBooksAuthorNameDisplayed() {
         booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1));
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name2));
@@ -81,32 +81,35 @@ public class TestBooksDisplay extends DriverSetup {
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name4), "কাজী আনোয়ার হোসেন");
     }
 
-//    @Test(priority = 4, description = "Verify linking of book image to details page")
-//    public void TestLinkWithImageDetailsPage(){
-////        booksDisplayPage.waitForElementToBeClickable(booksDisplayPage.book1);
-//        booksDisplayPage.scrollToAElement(booksDisplayPage.book1, 130);
-//        booksDisplayPage.clickOnElement(booksDisplayPage.book1);
-//        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.book1));
-//        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.book1_details));
-//        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.book1_page_url);
-////        Assert.assertTrue(getDriver().getCurrentUrl().equals(homePage.url));
-////
-////        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.hover_book5_text),"Add to Cart");
-//    }
+    @Test(priority = 4, description = "Verify linking of book image to details page")
+    public void TestLinkWithImageDetailsPage(){
+        booksDisplayPage.scrollToAElement(booksDisplayPage.book_all_section, 130);
+        booksDisplayPage.hoverOnElement(booksDisplayPage.book1);
+        booksDisplayPage.safeClick(booksDisplayPage.book1_view_details_option);
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.book1_details));
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.book1_page_url);
+    }
 
 //    @Test(priority = 5, description = "Verify that the user can sort the books by Price and Discount..")
-//    public void TestSortingFunctionality() {
-//        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_whole_section, 100);
+//    public void TestSortingFunctionality() throws InterruptedException {
+////        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_whole_section, 100);
 ////        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book1);
 ////        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book1));
-//        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book3);
-//        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book5);
-//        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book3));
-//        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book5));
+//        booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
+//        booksDisplayPage.scrollToAElement(booksDisplayPage.price_sorting_section, 130);
+//        Thread.sleep(4000);
+//        booksDisplayPage.moveSlider(booksDisplayPage.right_to_left, 120);
+//        Thread.sleep(7000);
+//
+////        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_3rd_book);
+////        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book3);
+////        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book5);
+////        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book3));
+////        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.hover_book5));
 //    }
 
     @Test(priority = 6, description = "Verify that all displayed books are clickable")
-    public void TestDisplayedbBooksClickable() {
+    public void TestDisplayedBooksClickable() {
         booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
         booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_3rd_book);
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_title),"পদার্থবিজ্ঞান-২য় পত্র (একাদশ-দ্বাদশ শ্রেণি) (পেপারব্যাক)");
@@ -136,5 +139,24 @@ public class TestBooksDisplay extends DriverSetup {
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1_all_books_title),"হুমায়ূন আহমেদ এর বই সমূহ");
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1_book1));
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1_book4));
+    }
+
+    @Test(priority = 9, description = "Verify the next page number option.")
+    public void TestPageNumberOption() {
+        booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
+        booksDisplayPage.clickOnElement(booksDisplayPage.author_name1);
+        booksDisplayPage.safeClick(booksDisplayPage.author_name1_page2_option);
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1_page2_text),"(Showing 61 to 120 of 506 items)");
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.author_name1_page2_url);
+    }
+
+    @Test(priority = 10, description = "Verify the Rightward Arrow (›) option in pagination bar")
+    public void TestRightwardArrowOption() {
+        booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
+        booksDisplayPage.clickOnElement(booksDisplayPage.author_name1);
+        booksDisplayPage.safeClick(booksDisplayPage.author_name1_page_rightward_arrow_option);
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1_page2_3rd_book));
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1_page2_text),"(Showing 61 to 120 of 506 items)");
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.author_name1_page2_url);
     }
 }

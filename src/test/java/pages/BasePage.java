@@ -49,6 +49,15 @@ public class BasePage {
         return getElement(locator).getText();
     }
 
+//    public String getElementText(By locator) {
+//        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+//        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+//        wait.until(ExpectedConditions.visibilityOf(element));
+//        return element.getText().trim();
+//    }
+
+
+
     public String getPageUrl(){
         return getDriver().getCurrentUrl();
     }
@@ -161,7 +170,7 @@ public class BasePage {
         String parentTab = getDriver().getWindowHandle();
 
         // Wait until new tab opens
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
         wait.until(driver -> driver.getWindowHandles().size() > 1);
 
         // Switch to the new tab
@@ -173,6 +182,34 @@ public class BasePage {
             }
         }
     }
+
+    public void scrollAndHover(By locator) {
+        WebDriver driver = getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        Actions actions = new Actions(driver);
+
+        // Wait until element is present & visible
+        WebElement target = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+        // Scroll into view (centered)
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block: 'center', inline: 'center'});", target);
+
+        // Hover
+        actions.moveToElement(target).perform();
+    }
+
+    public void moveSlider(By sliderLocator, int xOffset) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        WebElement sliderHandle = wait.until(ExpectedConditions.elementToBeClickable(sliderLocator));
+
+        Actions action = new Actions(getDriver());
+        action.clickAndHold(sliderHandle).moveByOffset(xOffset, 0).release().perform();
+    }
+
+
+
+
 
 
 
