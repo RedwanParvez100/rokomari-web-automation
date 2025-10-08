@@ -24,31 +24,16 @@ public class BooksDisplayPage extends BasePage{
     public By hover_book3 = By.xpath("//body[1]/div[8]/section[3]/section[1]/div[1]/div[1]/div[1]/div[3]/a[1]");
     public By hover_book5 = By.xpath("//body[1]/div[8]/section[3]/section[1]/div[1]/div[1]/div[1]/div[5]/a[1]");
 
-    public By all_author_name_section = By.xpath("//a[@id='js--authors']");
-    public By author_name1 = By.xpath("//a[contains(text(),'হুমায়ূন আহমেদ')]");
-    public By author_name1_page2_text = By.xpath("//p[normalize-space()='(Showing 61 to 120 of 506 items)']");
-    public String author_name1_page2_url = "https://www.rokomari.com/book/author/1/humayun-ahmed?ref=mm_p0&page=2";
-    public By author_name1_page2_option = By.xpath("//a[normalize-space()='2']");
-    public By author_name1_page2_3rd_book = By.xpath("//img[@alt='Putul image']");
-    public By author_name1_page_rightward_arrow_option = By.xpath("//i[@class='ion-chevron-right']");
-    public By author_name1_all_books_title = By.xpath("//h1[contains(text(),'হুমায়ূন আহমেদ এর বই সমূহ')]");
-    public By author_name1_book1 = By.xpath("//img[@alt='Newyork Nilakashe Jakjoke Rod image']");
-    public By author_name1_book4 = By.xpath("//img[@alt='Kichu Shoishob image']");
-
-
-    public By author_name2 = By.xpath("//a[contains(text(),'কাজী নজরুল ইসলাম')]");
-    public By author_name3 = By.xpath("//a[contains(text(),'মানিক বন্দ্যোপাধ্যায়')]");
-    public By author_name4 = By.xpath("//a[contains(text(),'কাজী আনোয়ার হোসেন')]");
-
     public By book_all_section = By.xpath("//h2[contains(text(),'সাম্প্রতিক যেসকল পণ্য আমাদের গ্রাহকেরা বেশি নিচ্ছে')]");
-
     public By book1 = By.xpath("//img[@alt=\"Zubair's GK (General Knowledge) image\"]");
     public By book1_view_details_option = By.xpath("//div[@class='d-flex justify-content-start js--book-list slick-initialized slick-slider']//div[4]//div[1]//a[1]");
     public By book1_details = By.xpath("//p[@id='js--short-description']//p[contains(text(),'বিশ্ববিদ্যালয় ভর্তি, বিসিএস ও সরকারি-বেসকারি বিভিন')]");
     public String book1_page_url = "https://www.rokomari.com/book/481666/zubair-s-gk-general-knowledge";
 
     public By academic_book1 = By.xpath("//body/div[@class='container-fluid custom-container home-page-main-div']/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/div[1]/img[1]");
+    public By academic_book1_2nd_book = By.xpath("//div[@class='product-item slick-slide slick-active']//img[@alt='তথ্য ও যোগাযোগ প্রযুক্তি - একাদশ ও দ্বাদশ শ্রেণির বইয়ের সহায়ক ডিভিডি - সিডি image']");
     public By academic_book1_3rd_book = By.xpath("//div[@class='product-list__books']//div[1]//div[2]//div[1]//div[1]//div[4]");
+    public By academic_book1_4th_book = By.xpath("//div[@class='product-item slick-slide slick-active']//img[@alt='Completing Sentence image']");
     public By academic_book1_3rd_book_title = By.xpath("//h1[contains(.,'পদার্থবিজ্ঞান-২য় পত্র')]");
     public By academic_book1_3rd_book_author_name = By.xpath("//p[@class='details-book-info__content-author']//a[contains(text(),'প্রফেসর মোঃ আখতারুল ইসলাম')]");
     public By academic_book1_3rd_book_price = By.xpath("//span[@class='sell-price'][normalize-space()='TK. 518']");

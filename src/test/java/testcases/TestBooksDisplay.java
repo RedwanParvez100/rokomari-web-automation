@@ -3,6 +3,7 @@ package testcases;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.AuthorPage;
 import pages.BooksDisplayPage;
 import pages.HeaderPage;
 import pages.HomePage;
@@ -13,6 +14,8 @@ public class TestBooksDisplay extends DriverSetup {
     HeaderPage headerPage = new HeaderPage();
     HomePage homePage = new HomePage();
     BooksDisplayPage booksDisplayPage = new BooksDisplayPage();
+    AuthorPage authorPage = new AuthorPage();
+
 
     @BeforeMethod
     public void loadHeaderPageForTest() {
@@ -70,15 +73,15 @@ public class TestBooksDisplay extends DriverSetup {
 
     @Test(priority = 3, description = "Verify that the book's author name is correctly displayed.")
     public void TestBooksAuthorNameDisplayed() {
-        booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1));
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name2));
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name3));
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name4));
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1), "হুমায়ূন আহমেদ");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name2), "কাজী নজরুল ইসলাম");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name3), "মানিক বন্দ্যোপাধ্যায়");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name4), "কাজী আনোয়ার হোসেন");
+        authorPage.hoverOnElement(authorPage.all_author_name_section);
+        Assert.assertTrue(authorPage.isVisible(authorPage.author_name1));
+        Assert.assertTrue(authorPage.isVisible(authorPage.author_name2));
+        Assert.assertTrue(authorPage.isVisible(authorPage.author_name3));
+        Assert.assertTrue(authorPage.isVisible(authorPage.author_name4));
+        Assert.assertEquals(authorPage.getElementText(authorPage.author_name1), "হুমায়ূন আহমেদ");
+        Assert.assertEquals(authorPage.getElementText(authorPage.author_name2), "কাজী নজরুল ইসলাম");
+        Assert.assertEquals(authorPage.getElementText(authorPage.author_name3), "মানিক বন্দ্যোপাধ্যায়");
+        Assert.assertEquals(authorPage.getElementText(authorPage.author_name4), "কাজী আনোয়ার হোসেন");
     }
 
     @Test(priority = 4, description = "Verify linking of book image to details page")
@@ -132,31 +135,5 @@ public class TestBooksDisplay extends DriverSetup {
                         "উত্তর সংকেত সংযোজিত হয়েছে।বইয়ের শেষ অংশে বিগত সকল বছরের প্রশ্নপত্র সংযুক্ত করা আছে।");
     }
 
-    @Test(priority = 8, description = "Verify clicking an author redirects to that author’s published books page")
-    public void TestAuthorPublishedBooksPage() {
-        booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
-        booksDisplayPage.clickOnElement(booksDisplayPage.author_name1);
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1_all_books_title),"হুমায়ূন আহমেদ এর বই সমূহ");
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1_book1));
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1_book4));
-    }
 
-    @Test(priority = 9, description = "Verify the next page number option.")
-    public void TestPageNumberOption() {
-        booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
-        booksDisplayPage.clickOnElement(booksDisplayPage.author_name1);
-        booksDisplayPage.safeClick(booksDisplayPage.author_name1_page2_option);
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1_page2_text),"(Showing 61 to 120 of 506 items)");
-        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.author_name1_page2_url);
-    }
-
-    @Test(priority = 10, description = "Verify the Rightward Arrow (›) option in pagination bar")
-    public void TestRightwardArrowOption() {
-        booksDisplayPage.hoverOnElement(booksDisplayPage.all_author_name_section);
-        booksDisplayPage.clickOnElement(booksDisplayPage.author_name1);
-        booksDisplayPage.safeClick(booksDisplayPage.author_name1_page_rightward_arrow_option);
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.author_name1_page2_3rd_book));
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.author_name1_page2_text),"(Showing 61 to 120 of 506 items)");
-        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.author_name1_page2_url);
-    }
 }

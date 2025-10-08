@@ -66,6 +66,27 @@ public class BasePage {
 //        Allure.addAttachment(name, new ByteArrayInputStream(((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.BYTES)));
 //    }
 
+    // only for first one consistent text appear, not work for updated text
+    public void waitForTextToBePresent(By locator) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        wait.until(driver -> {
+            String text = driver.findElement(locator).getText().trim();
+            return !text.isEmpty();
+        });
+    }
+
+    public void waitForUpdatedAmount(By locator) {
+        String oldText = getDriver().findElement(locator).getText().trim();
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        wait.until(driver -> {
+            String newText = driver.findElement(locator).getText().trim();
+            return !newText.equals(oldText) && !newText.isEmpty();
+        });
+    }
+
+
+
+
     public void waitForElementPresence(By locator) {
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
