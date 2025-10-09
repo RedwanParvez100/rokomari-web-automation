@@ -2,6 +2,7 @@ package testcases;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.HeaderPage;
 import pages.HomePage;
@@ -17,11 +18,11 @@ public class TestLoginPage extends DriverSetup {
     HeaderPage headerPage = new HeaderPage();
     LoginPage loginPage = new LoginPage();
 
-    @BeforeMethod
+    @BeforeSuite
     public  void setup_class(){
         homePage.loadHomePage();
-//        homePage.clickOnElement(homePage.pop_up_btn);
-        homePage.clickOnElement(homePage.login_signup_btn);
+        homePage.clickOnElement(homePage.pop_up_btn);
+//        homePage.clickOnElement(homePage.login_signup_btn);
     }
 
     @Test(priority = 0, description = "Verify the Sign In page title.")

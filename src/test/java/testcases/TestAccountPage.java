@@ -27,7 +27,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestHoverMenu(){
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez200@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         Assert.assertTrue(accountPage.isVisible(accountPage.my_profile));
     }
@@ -36,7 +36,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestHoverMenuList(){
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez200@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         Assert.assertTrue(accountPage.isVisible(accountPage.my_list));
         Assert.assertTrue(accountPage.isVisible(accountPage.wish_list));
@@ -47,7 +47,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestHoverMenuDisappears(){
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez200@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         headerPage.hoverOnElement(headerPage.menubar_items_last);
         Assert.assertTrue(headerPage.isVisible(headerPage.menubar_items_last));
@@ -57,7 +57,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestProfileNavigation() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez200@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         Thread.sleep(2000);
         accountPage.clickOnElement(accountPage.my_profile);
@@ -70,7 +70,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestGenderOptionDisplay() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez200@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         Thread.sleep(2000);
         accountPage.clickOnElement(accountPage.my_profile);
@@ -81,7 +81,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestGenderOptions() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez100@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.my_profile);
         accountPage.clickOnElement(accountPage.change_info_option);
@@ -94,7 +94,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestSelectingGender() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez100@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.my_profile);
         accountPage.clickOnElement(accountPage.change_info_option);
@@ -114,7 +114,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestEmptyGenderField() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez100@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.my_profile);
         accountPage.clickOnElement(accountPage.change_info_option);
@@ -128,7 +128,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestPersistenceGenderField() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez100@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.my_profile);
         accountPage.clickOnElement(accountPage.change_info_option);
@@ -144,7 +144,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestSignOut() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "redwanparvez100@gmail.com");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(loginPage.sign_out_btn);
         Assert.assertTrue(loginPage.isVisible(loginPage.sign_in_btn));
@@ -155,7 +155,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestPasswordMismatch() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.my_profile);
         accountPage.clickOnElement(accountPage.change_info_option);
@@ -170,7 +170,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestWeakPassword() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.my_profile);
         accountPage.clickOnElement(accountPage.change_info_option);
@@ -186,7 +186,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestOrdersNavigation() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.order_option);
         Assert.assertTrue(accountPage.isVisible(accountPage.order_amount));
@@ -197,7 +197,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestWishlistNavigation() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.wishlist_option);
         Assert.assertTrue(accountPage.isVisible(accountPage.wishlist_amount));
@@ -208,7 +208,7 @@ public class TestAccountPage extends DriverSetup {
     public void TestSetPasswordFunctionality() throws InterruptedException {
         loginPage.writeOnElement(loginPage.email_input_box, "19202103100@cse.bubt.edu.bd");
         loginPage.clickOnElement(loginPage.next_btn);
-        loginPage.WaitAndAutoClick(loginPage.login_btn);
+        loginPage.WaitAndAutoClick(loginPage.otp_with_login_btn);
         loginPage.hoverOnElement(loginPage.user_icon);
         accountPage.clickOnElement(accountPage.my_profile);
         accountPage.safeClick(accountPage.set_add_password);
