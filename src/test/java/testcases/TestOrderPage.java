@@ -24,7 +24,7 @@ public class TestOrderPage extends DriverSetup {
     @Test(priority = 0, description = "Verify that the Add to Cart button is Clickable.")
     public void TestAddToCartButtonEnable(){
         booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
-        booksDisplayPage.hoverOnElement(booksDisplayPage.academic_book1_3rd_book);
+        booksDisplayPage.hoverOnElement(booksDisplayPage.academic_book1_4th_book);
         orderPage.clickOnElement(orderPage.academic_3rd_book_cart_button);
         Assert.assertTrue(orderPage.isVisible(orderPage.academic_3rd_book_cart_button));
         Assert.assertTrue(orderPage.isEnable(orderPage.academic_3rd_book_cart_button));
@@ -33,7 +33,7 @@ public class TestOrderPage extends DriverSetup {
     @Test(priority = 1, description = "Verify that a product is added to the cart after clicking the Add to Cart button")
     public void TestProductAddedTheCart(){
         booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
-        booksDisplayPage.hoverOnElement(booksDisplayPage.academic_book1_3rd_book);
+        booksDisplayPage.hoverOnElement(booksDisplayPage.academic_book1_4th_book);
         orderPage.clickOnElement(orderPage.academic_3rd_book_cart_button);
         Assert.assertTrue(orderPage.isVisible(orderPage.cart_icon));
         Assert.assertEquals(orderPage.getElementText(orderPage.cart_quantity_show),"1");

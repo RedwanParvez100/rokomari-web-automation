@@ -114,7 +114,7 @@ public class TestBooksDisplay extends DriverSetup {
     @Test(priority = 6, description = "Verify that all displayed books are clickable")
     public void TestDisplayedBooksClickable() {
         booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
-        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_3rd_book);
+        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_4th_book);
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_title),"পদার্থবিজ্ঞান-২য় পত্র (একাদশ-দ্বাদশ শ্রেণি) (পেপারব্যাক)");
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_author_name),"প্রফেসর মোঃ আখতারুল ইসলাম");
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_price),"TK. 518");
@@ -123,7 +123,7 @@ public class TestBooksDisplay extends DriverSetup {
     @Test(priority = 7, description = "Verify that the selected book’s description is displayed correctly")
     public void TestSelectedBooksDescription() {
         booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
-        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_3rd_book);
+        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_4th_book);
         booksDisplayPage.clickOnElement(booksDisplayPage.academic_book1_3rd_book_details_option);
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_title),"পদার্থবিজ্ঞান-২য় পত্র (একাদশ-দ্বাদশ শ্রেণি) (পেপারব্যাক)");
         Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_author_name),"প্রফেসর মোঃ আখতারুল ইসলাম");

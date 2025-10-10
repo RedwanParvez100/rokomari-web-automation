@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 public class ShoppingCartPage extends BasePage{
 
     public By total_price = By.xpath("//span[@id='js--cart-total-price']");
+    public By include_all_charge = By.xpath("//span[@id='js--payable-total']");
     public By shopping_cart_btn = By.xpath("//img[@alt='cart']");
     public By empty_cart_text = By.xpath("//h2[normalize-space()='Your Cart is Empty!']");
     public By book2_increase = By.xpath("//button[@id='js--btn-plus-216905']");

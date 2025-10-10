@@ -26,6 +26,7 @@ public class DriverSetup {
     @BeforeSuite
     public void openBrowser() {
         WebDriver browser = getBrowser(browser_name);
+        browser.manage().window().maximize();
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         setDriver(browser);
     }

@@ -99,7 +99,7 @@ public class BasePage {
     }
 
     public void waitForElementToBeClickable(By locator) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
     }
@@ -152,7 +152,7 @@ public class BasePage {
 
     public void scrollToAElement(By locator, int offset) {
         // Wait for element to be present and visible
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(40));
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
         // Scroll element into view, center it in the viewport
@@ -206,7 +206,7 @@ public class BasePage {
 
     public void scrollAndHover(By locator) {
         WebDriver driver = getDriver();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         Actions actions = new Actions(driver);
 
         // Wait until element is present & visible

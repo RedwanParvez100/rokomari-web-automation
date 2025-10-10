@@ -31,9 +31,10 @@ public class BooksDisplayPage extends BasePage{
     public String book1_page_url = "https://www.rokomari.com/book/481666/zubair-s-gk-general-knowledge";
 
     public By academic_book1 = By.xpath("//body/div[@class='container-fluid custom-container home-page-main-div']/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/div[1]/img[1]");
-    public By academic_book1_2nd_book = By.xpath("//div[@class='product-item slick-slide slick-active']//img[@alt='তথ্য ও যোগাযোগ প্রযুক্তি - একাদশ ও দ্বাদশ শ্রেণির বইয়ের সহায়ক ডিভিডি - সিডি image']");
-    public By academic_book1_3rd_book = By.xpath("//div[@class='product-list__books']//div[1]//div[2]//div[1]//div[1]//div[4]");
-    public By academic_book1_4th_book = By.xpath("//div[@class='product-item slick-slide slick-active']//img[@alt='Completing Sentence image']");
+    public By academic_book1_2nd_book = By.xpath("//div[@class='product-item slick-slide slick-active']//img[@alt='উচ্চতর গণিত-১ম পত্রের সম্পূর্ণ সমাধান image']");
+    public By academic_book1_3rd_book = By.xpath("//div[@class='product-item slick-slide slick-active']//img[@alt='তথ্য ও যোগাযোগ প্রযুক্তি - একাদশ ও দ্বাদশ শ্রেণির বইয়ের সহায়ক ডিভিডি - সিডি image']");
+    public By academic_book1_4th_book = By.xpath("//div[@class='product-list__books']//div[1]//div[2]//div[1]//div[1]//div[4]");
+    public By academic_book1_5th_book = By.xpath("//div[@class='product-item slick-slide slick-active']//img[@alt='Completing Sentence image']");
     public By academic_book1_3rd_book_title = By.xpath("//h1[contains(.,'পদার্থবিজ্ঞান-২য় পত্র')]");
     public By academic_book1_3rd_book_author_name = By.xpath("//p[@class='details-book-info__content-author']//a[contains(text(),'প্রফেসর মোঃ আখতারুল ইসলাম')]");
     public By academic_book1_3rd_book_price = By.xpath("//span[@class='sell-price'][normalize-space()='TK. 518']");
