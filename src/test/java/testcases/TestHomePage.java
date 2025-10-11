@@ -2,7 +2,7 @@ package testcases;
 
 //import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.HomePage;
@@ -13,13 +13,13 @@ public class TestHomePage extends DriverSetup {
     HomePage homePage = new HomePage();
     SoftAssert softAssert = new SoftAssert();
 
-    @BeforeMethod
+    @BeforeSuite
     public void loadHomePageForTest(){
         homePage.loadHomePage();
-//        homePage.clickOnElement(homePage.pop_up_btn);
+        homePage.clickOnElement(homePage.pop_up_btn);
     }
 
-    @Test(description = "Test Home Page Title", priority = 0, groups = "Sanity, Regression")
+    @Test(priority = 0, description = "Test Home Page Title", groups = "Sanity, Regression")
 //    @Description ("Allure - Test Home Page Title")
     public void TestHomePageTitle(){
 //        homePage.addScreenshot("Home page");
@@ -40,9 +40,10 @@ public class TestHomePage extends DriverSetup {
     @Test(priority = 2, description = "Verify that any deals, discounts, or carousel banner are correctly displayed on the home page.")
 //    @Description("Test Deals, discounts, or promotions should be displayed correctly.")
     public void TestCarouselDisplay(){
-//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        Assert.assertTrue(homePage.isVisible(homePage.carousel_3));
-        softAssert.assertTrue(homePage.isVisible(homePage.carousel_4));
+        homePage.waitForElementVisible(homePage.carousel_3, 30);
+        homePage.waitForElementVisible(homePage.carousel_5, 30);
+        softAssert.assertTrue(homePage.isVisible(homePage.carousel_3));
+        Assert.assertTrue(homePage.isVisible(homePage.carousel_5));
     }
 
     @Test(priority = 3, description = "Verify that carousel banners are working perfectly.")

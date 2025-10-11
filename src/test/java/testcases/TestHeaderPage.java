@@ -2,6 +2,7 @@ package testcases;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.HeaderPage;
 import pages.HomePage;
@@ -14,7 +15,7 @@ public class TestHeaderPage extends DriverSetup {
     HeaderPage headerPage = new HeaderPage();
     HomePage homePage = new HomePage();
 
-    @BeforeMethod
+    @BeforeSuite
     public void loadHeaderPageForTest(){
         homePage.loadHomePage();
         homePage.clickOnElement(homePage.pop_up_btn);

@@ -37,6 +37,15 @@ public class BasePage {
         return getElement(locator).isEnabled();
     }
 
+    public boolean isSelected(By locator) {
+        try {
+            return getElement(locator).isSelected();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
     public void loadAPage(String url){
         getDriver().get(url);
     }

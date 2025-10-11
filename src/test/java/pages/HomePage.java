@@ -16,14 +16,15 @@ public class HomePage extends BasePage{
     public By book_types4 = By.xpath("//h1[contains(text(),'উপন্যাসের বই')]");
     public By book_types5 = By.xpath("//h1[contains(text(),'শিশু-কিশোর বই')]");
 
-    public By carousel_1 = By.xpath("//a[@id='slick-slide30']//img[@alt='Admission Carnival, 2025 banner image']");
-    public By carousel_2 = By.xpath("//a[@id='slick-slide31']//img[@alt='এক নজরে কুরআন চাবির রিং অফার banner image']");
-    public By carousel_3 = By.xpath("//a[@id='slick-slide32']//img[@alt='Super September banner image']");
+    public By carousel_1 = By.xpath("//a[@id='slick-slide30']//img[@alt='10-10 Offer banner image']");
+
+    public By carousel_4 = By.xpath("//a[@id='slick-slide33']//img[@alt='Admission Carnival, 2025 banner image']");
+    public By carousel_2 = By.xpath("//a[@id='slick-slide31']//img[@alt='HSC MEGABOOK FEST banner image']");
+    public By carousel_3 = By.xpath("//a[@id='slick-slide32']//img[@alt='এক নজরে কুরআন চাবির রিং অফার banner image']");
     public By carousel_3rd = By.xpath("//button[@id='slick-slide-control32']");
-    public By carousel_4 = By.xpath("//a[@id='slick-slide33']//img[@alt='সিরাত গ্রন্থমেলা-২৫ banner image']");
+    public By carousel_5 = By.xpath("//a[@id='slick-slide34']//img[@alt='সিরাত গ্রন্থমেলা-২৫ banner image']");
     public By carousel_4th_bottom_icon = By.xpath("//button[@id='slick-slide-control33']");
-    public By carousel_4th_related_all_books = By.xpath("//h1[contains(text(),'Seerat Granthamela 2025')]");
-    public By carousel_5 = By.xpath("//a[@id='slick-slide34']//img[@alt='Casio Calculator center banner image']");
+    public By carousel_4th_related_all_books = By.xpath("//h2[contains(text(),'বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি')]");
 
     public By carousel_right_side_option = By.xpath("//section[@class='main-banner js--main-banner slick-initialized slick-slider slick-dotted']//button[@aria-label='Next'][normalize-space()='Next']");
     public By carousel_left_side_option = By.xpath("//button[@class='slick-prev slick-arrow']");
