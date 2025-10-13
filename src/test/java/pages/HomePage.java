@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class HomePage extends BasePage{
 
     public String url= "https://www.rokomari.com/";
-    public String title = "Rokomari.com - Online Book, Electronics & Super Shop in Bangladesh";
+    public String title = "Rokomari.com | Online Shopping for Books, Electronics, Gadgets, Personal Care, Beauty Products, Lifestyle & More";
     public By pop_up_btn = By.xpath("//button[@class='popup-modal__close-btn close-btn-outside js--popup-modal__close-btn']");
     public By login_signup_btn = By.xpath("//a[@class='logged-out-user-menu-btn']");
     public By sign_out_btn = By.xpath("//a[normalize-space()='Sign Out']");

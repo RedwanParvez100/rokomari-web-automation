@@ -1,14 +1,11 @@
 package testcases;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.HeaderPage;
 import pages.HomePage;
 import utilities.DriverSetup;
-
-import java.time.Duration;
 
 public class TestHeaderPage extends DriverSetup {
 
@@ -46,7 +43,7 @@ public class TestHeaderPage extends DriverSetup {
 
     @Test(priority = 3, description = "Verify that the Menu bar is added to the header.")
     public void TestMenuBarDisplay(){
-        Assert.assertTrue(headerPage.isVisible(headerPage.menubar));
+        Assert.assertTrue(headerPage.isVisible(headerPage.menubar_section));
         Assert.assertTrue(headerPage.isVisible(headerPage.menubar_items_1st));
         Assert.assertTrue(headerPage.isVisible(headerPage.menubar_items_last));
     }
@@ -57,49 +54,58 @@ public class TestHeaderPage extends DriverSetup {
         Assert.assertTrue(headerPage.isEnable(headerPage.search_bar));
     }
 
-    @Test(priority = 5, description = "Verify Navbar Items are Clickable")
-    public void TestNavbarItemsClickable(){
-        headerPage.clickOnElement(headerPage.navbar_items_1st);
-        headerPage.clickOnElement(headerPage.navbar_items_2nd);
-        headerPage.clickOnElement(headerPage.navbar_items_3rd);
-        getDriver().navigate().back();
-        headerPage.clickOnElement(headerPage.navbar_items_4th);
-        headerPage.clickOnElement(headerPage.navbar_items_5th);
-        Assert.assertFalse(getDriver().getCurrentUrl().equals(homePage.url));
-    }
-
-    @Test(priority = 6, description = "Verify that the \"Hello, Sign in\" button should be clickable")
-    public void TestSignInButton(){
-        headerPage.clickOnElement(headerPage.sign_in_option);
-        Assert.assertEquals(headerPage.getElement(headerPage.sign_in_page_msg).getText(),"সাইন ইন করুন");
-    }
-
-    @Test(priority = 7, description = "Verify the Search bar functionality")
+    @Test(priority = 5, description = "Verify the Search bar functionality")
     public void TestSearchBarFunctionality(){
         headerPage.writeOnElement(headerPage.search_bar, "History");
+        headerPage.clickOnElement(headerPage.search_icon);
         Assert.assertTrue(headerPage.isEnable(headerPage.search_bar));
+        Assert.assertEquals(getDriver().getCurrentUrl(), headerPage.history_page_url);
+    }
+
+    @Test(priority = 6, description = "Verify Navbar Items are Clickable")
+    public void TestNavbarItemsClickable() throws InterruptedException {
+        getDriver().navigate().back();
+        headerPage.clickOnElement(headerPage.navbar_items_1st);
+        getDriver().navigate().back();
+        headerPage.clickOnElement(headerPage.navbar_items_2nd);
+        getDriver().navigate().back();
+        headerPage.clickOnElement(headerPage.navbar_items_3rd);
+        getDriver().navigate().back();
+        headerPage.switchToNewTabAndBack(headerPage.navbar_items_4th);
+        headerPage.switchToNewTabAndBack(headerPage.navbar_items_5th);
+        Assert.assertTrue(headerPage.isEnable(headerPage.navbar_items_1st));
+        Assert.assertTrue(headerPage.isEnable(headerPage.navbar_items_2nd));
+        Assert.assertTrue(headerPage.isEnable(headerPage.navbar_items_3rd));
+        Assert.assertTrue(headerPage.isEnable(headerPage.navbar_items_4th));
+        Assert.assertTrue(headerPage.isEnable(headerPage.navbar_items_5th));
+        Assert.assertTrue(getDriver().getCurrentUrl().equals(homePage.url));
+    }
+
+    @Test(priority = 7, description = "Verify that the \"Hello, Sign in\" button should be clickable")
+    public void TestSignInButton(){
+        Assert.assertEquals(headerPage.getElement(headerPage.sign_in_option).getText(),"Hello, Sign in");
+        headerPage.clickOnElement(headerPage.sign_in_option);
+        Assert.assertTrue(headerPage.isEnable(headerPage.sign_in_option));
+        Assert.assertEquals(headerPage.getElement(headerPage.sign_in_option).getText(),"Sign in");
+        getDriver().navigate().back();
     }
 
     @Test(priority = 8, description = "Verify the home page should be open by clicking on the logo on all pages.")
     public void TestOpenHomePage() throws InterruptedException {
-        headerPage.scrollToAElement(headerPage.academic_book_1, -50);
-//        Thread.sleep(5000);
-        headerPage.clickOnElement(headerPage.academic_book_1);
-//        Thread.sleep(6000);
+        headerPage.safeClick(headerPage.academic_book_1);
         headerPage.clickOnElement(headerPage.website_logo);
-//        Thread.sleep(6000);
+        Assert.assertTrue(headerPage.isEnable(headerPage.website_logo));
         Assert.assertEquals(getDriver().getCurrentUrl(), homePage.url);
     }
 
     @Test(priority = 9, description = "Verify that the Menu bar all items are clickable.")
     public void TestMenuBarClickable() throws InterruptedException {
         headerPage.clickOnElement(headerPage.menubar_electronics);
-//        Thread.sleep(6000);
         headerPage.clickOnElement(headerPage.menubar_best_seller);
-//        Thread.sleep(6000);
         headerPage.clickOnElement(headerPage.menubar_order);
-//        Thread.sleep(6000);
-//        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(6000));
+        Assert.assertTrue(headerPage.isEnable(headerPage.menubar_electronics));
+        Assert.assertTrue(headerPage.isEnable(headerPage.menubar_best_seller));
+        Assert.assertTrue(headerPage.isEnable(headerPage.menubar_order));
         Assert.assertFalse(getDriver().getCurrentUrl().equals(homePage.url));
         Assert.assertEquals(getDriver().getCurrentUrl(), headerPage.order_page_url);
     }

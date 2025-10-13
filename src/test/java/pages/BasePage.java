@@ -213,6 +213,29 @@ public class BasePage {
         }
     }
 
+    public void switchToNewTabAndBack(By locator) {
+        String mainWindow = getDriver().getWindowHandle();
+
+        // Click element that opens new tab
+        getDriver().findElement(locator).click();
+
+        // Wait and switch to new tab
+        for (String windowHandle : getDriver().getWindowHandles()) {
+            if (!windowHandle.equals(mainWindow)) {
+                getDriver().switchTo().window(windowHandle);
+                break;
+            }
+        }
+
+        // (Optional) Perform any validation or action in new tab
+//        System.out.println("New tab title: " + getDriver().getTitle());
+
+        // Close the new tab and return to main window
+        getDriver().close();
+        getDriver().switchTo().window(mainWindow);
+    }
+
+
     public void scrollAndHover(By locator) {
         WebDriver driver = getDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
