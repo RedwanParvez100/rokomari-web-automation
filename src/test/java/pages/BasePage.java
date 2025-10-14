@@ -25,6 +25,11 @@ public class BasePage {
         getElement(locator).sendKeys(text);
     }
 
+    public void clearInput(By locator) {
+        WebElement element = getElement(locator);
+        element.clear();
+    }
+
     public boolean isVisible(By locator){
         try {
             return getElement(locator).isDisplayed();

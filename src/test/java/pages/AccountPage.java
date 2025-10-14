@@ -12,7 +12,7 @@ public class AccountPage extends BasePage{
 
     public By my_profile = By.xpath("//a[normalize-space()='My Profile']");
     public By my_list = By.xpath("//a[normalize-space()='My List']");
-    public By wish_list = By.xpath("//div[@id='js--desktop-header-container']//a[8]");
+    public By wish_list = By.xpath("//a[normalize-space()='Wishlist']");
     public By following_author = By.xpath("//a[normalize-space()='Following Authors']");
     public By change_info_option = By.xpath("//span[@id='js--edit-personal']");
     public By gender_option = By.xpath("//label[@for='gender']");
@@ -23,9 +23,10 @@ public class AccountPage extends BasePage{
     public By confirm_msg = By.xpath("//span[@id='userInfoChangeMsg']");
 
     public By set_add_password = By.xpath("//span[@id='js--edit-password']");
+    public By old_password = By.xpath("//input[@id='oldPwd']");
     public By set_new_password = By.xpath("//input[@id='newPwd']");
     public By set_confirm_password = By.xpath("//input[@id='renewPwd']");
-    public By save_password_btn = By.xpath("//input[@id='js--change-social-pass']");
+    public By save_password_btn = By.xpath("//input[@id='js--change-pass']");
     public By password_confirm_msg = By.xpath("//p[contains(text(),'Your password changed successfully. Please login u')]");
     public By password_mismatch_validation_msg = By.xpath("//div[@class='error text-danger font-italic mt-3']");
     public By weak_password_validation_msg = By.xpath("//span[@id='editPassword']");
