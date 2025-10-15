@@ -1,7 +1,7 @@
 package testcases;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.AuthorPage;
 import pages.BooksDisplayPage;
@@ -17,7 +17,7 @@ public class TestBooksDisplay extends DriverSetup {
     AuthorPage authorPage = new AuthorPage();
 
 
-    @BeforeMethod
+    @BeforeSuite
     public void loadHeaderPageForTest() {
         homePage.loadHomePage();
         homePage.clickOnElement(homePage.pop_up_btn);
@@ -26,12 +26,16 @@ public class TestBooksDisplay extends DriverSetup {
     @Test(priority = 0, description = "Verify that the book's name and price are correctly displayed.")
     public void TestBooksNameAndPriceDisplay() {
         booksDisplayPage.safeClick(booksDisplayPage.academic_book_types);
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.academic_books_url);
         headerPage.clickOnElement(headerPage.website_logo);
         booksDisplayPage.safeClick(booksDisplayPage.language_book_types);
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.language_books_url);
         headerPage.clickOnElement(headerPage.website_logo);
         booksDisplayPage.safeClick(booksDisplayPage.religious_book_types);
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.religious_books_url);
         headerPage.clickOnElement(headerPage.website_logo);
         booksDisplayPage.safeClick(booksDisplayPage.novel_types);
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.novel_books_url);
         headerPage.clickOnElement(headerPage.website_logo);
         Assert.assertTrue(homePage.isVisible(homePage.book_types1));
         Assert.assertTrue(homePage.isVisible(homePage.book_types2));
@@ -46,15 +50,15 @@ public class TestBooksDisplay extends DriverSetup {
         /*Scroll and wait for each tag before asserting. One scroll ≠ all elements.
           You must scroll each element into view individually when the site uses lazy-loading or sliders. */
 
-        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_tag1, -100);
-        booksDisplayPage.waitForElementVisible(booksDisplayPage.discount_tag1, 10);
+        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_tag1, 100);
+        booksDisplayPage.waitForElementVisible(booksDisplayPage.discount_tag1, 20);
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.discount_tag1));
 
-        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_tag3, -100);
+        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_tag3, 100);
         booksDisplayPage.waitForElementVisible(booksDisplayPage.discount_tag3, 10);
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.discount_tag3));
 
-        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_tag6, -100);
+        booksDisplayPage.scrollToAElement(booksDisplayPage.discount_tag6, 100);
         booksDisplayPage.waitForElementVisible(booksDisplayPage.discount_tag6, 10);
         Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.discount_tag6));
     }
@@ -86,11 +90,12 @@ public class TestBooksDisplay extends DriverSetup {
 
     @Test(priority = 4, description = "Verify linking of book image to details page")
     public void TestLinkWithImageDetailsPage(){
-        booksDisplayPage.scrollToAElement(booksDisplayPage.book_all_section, 130);
-        booksDisplayPage.hoverOnElement(booksDisplayPage.book1);
-        booksDisplayPage.safeClick(booksDisplayPage.book1_view_details_option);
-        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.book1_details));
-        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.book1_page_url);
+        booksDisplayPage.scrollToAElement(booksDisplayPage.book_all_section, 180);
+        booksDisplayPage.hoverOnElement(booksDisplayPage.book_items_5);
+//        booksDisplayPage.scrollAndHover(booksDisplayPage.book_items_5);
+        booksDisplayPage.safeClick(booksDisplayPage.book5_view_details_option);
+        Assert.assertTrue(booksDisplayPage.isVisible(booksDisplayPage.book5_details));
+        Assert.assertEquals(getDriver().getCurrentUrl(), booksDisplayPage.book5_page_url);
     }
 
 //    @Test(priority = 5, description = "Verify that the user can sort the books by Price and Discount..")
@@ -103,7 +108,6 @@ public class TestBooksDisplay extends DriverSetup {
 //        Thread.sleep(4000);
 //        booksDisplayPage.moveSlider(booksDisplayPage.right_to_left, 120);
 //        Thread.sleep(7000);
-//
 ////        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_3rd_book);
 ////        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book3);
 ////        booksDisplayPage.hoverOnElement(booksDisplayPage.hover_book5);
@@ -113,22 +117,18 @@ public class TestBooksDisplay extends DriverSetup {
 
     @Test(priority = 6, description = "Verify that all displayed books are clickable")
     public void TestDisplayedBooksClickable() {
+        getDriver().navigate().back();
         booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
-        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_4th_book);
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_title),"পদার্থবিজ্ঞান-২য় পত্র (একাদশ-দ্বাদশ শ্রেণি) (পেপারব্যাক)");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_author_name),"প্রফেসর মোঃ আখতারুল ইসলাম");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_price),"TK. 518");
+        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_phy_book5);
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_phy_book5_title),"পদার্থবিজ্ঞান-২য় পত্র (একাদশ-দ্বাদশ শ্রেণি) (পেপারব্যাক)");
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_phy_book5_author_name),"প্রফেসর মোঃ আখতারুল ইসলাম");
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_phy_book5_price),"TK. 518");
     }
 
     @Test(priority = 7, description = "Verify that the selected book’s description is displayed correctly")
     public void TestSelectedBooksDescription() {
-        booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
-        booksDisplayPage.clickAndSwitchToNewTab(booksDisplayPage.academic_book1_4th_book);
-        booksDisplayPage.clickOnElement(booksDisplayPage.academic_book1_3rd_book_details_option);
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_title),"পদার্থবিজ্ঞান-২য় পত্র (একাদশ-দ্বাদশ শ্রেণি) (পেপারব্যাক)");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_author_name),"প্রফেসর মোঃ আখতারুল ইসলাম");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_price),"TK. 518");
-        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_book1_3rd_book_details),
+        booksDisplayPage.clickOnElement(booksDisplayPage.academic_phy_book5_details_option);
+        Assert.assertEquals(booksDisplayPage.getElementText(booksDisplayPage.academic_phy_book5_details),
                 "পদার্থবিজ্ঞান-২য় পত্র (একাদশ-দ্বাদশ শ্রেণি) Physics-2nd Paper (XI-XII Class) রচনায়: প্রফেসর আখতারুল ইসলাম,ড.শফিকুল ইসলাম," +
                         "বিশ্বজিৎ দাস ও মো. মশিউর রহমান। জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড(NCTB) কর্তৃক অনুমোদিত একাদশ-দ্বাদশ শ্রেণির বিজ্ঞান বিভাগের " +
                         "শিক্ষার্থীদের জন্য। প্রতিটি অধ্যায়ের টপিক্স এর সাথে গাণিতিক সমস্যা ও সমাধান দেয়া আছে। অনুশীলনীতে বিগত বছরের বোর্ড প্রশ্ন ও সকল প্রশ্নের " +

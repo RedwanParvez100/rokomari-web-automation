@@ -18,4 +18,23 @@ public class DataSet {
         };
         return data;
     }
+
+
+    /*
+
+    @DataProvider(name = "invalidUserCredentialsExp")
+    public static Object[][] invalidCredentialstrail() {
+
+        return new Object[][]{
+                {"", "", "Please enter a valid email or phone number.", ""},
+                {"userexample.com", "", "", "Invalid email! Please enter a valid email or phone number."}
+//      {"feciwe6718@anlo.com", "1234567Aa", "Your email or password is incorrect!", ""},
+//      {"", "", "", "Please fill out this field."},
+//      {"feciwe6718@anlo.com", "", "", "Please fill out this field."}
+        };
+    }
+
+     */
+
+
 }

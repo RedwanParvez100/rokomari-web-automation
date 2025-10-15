@@ -7,7 +7,7 @@ public class HeaderPage extends BasePage{
 
     public By sign_in_option = By.xpath("//a[@class='logged-out-user-menu-btn']");
 //    public By sign_in_page_msg = By.xpath("//h1[@class='text-start w-fit text-[24px] font-medium']");
-    public By website_logo = By.xpath("//img[@alt='Rokomari.com']");
+    public By website_logo = By.xpath("//img[@alt='Rokomari logo']");
 
     public By navbar_items_1st = By.xpath("//span[contains(text(),'অর্ডার ট্র্যাক করুন')]");
     public By navbar_items_2nd = By.xpath("//span[contains(text(),'রকমারি কুইজ')]");

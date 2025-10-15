@@ -1,5 +1,7 @@
 package testcases;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -14,6 +16,7 @@ import java.time.Duration;
 
 public class TestLoginPage extends DriverSetup {
 
+    private static final Logger log = LoggerFactory.getLogger(TestLoginPage.class);
     HomePage homePage = new HomePage();
     HeaderPage headerPage = new HeaderPage();
     LoginPage loginPage = new LoginPage();
@@ -135,6 +138,36 @@ public class TestLoginPage extends DriverSetup {
         Assert.assertTrue(loginPage.isVisible(loginPage.user_icon));
     }
 
+    /*
+
+    @Test(dataProvider = "invalidUserCredentialsExp", dataProviderClass = DataSet.class)
+    public void testLoginWithinvalidCredentialstrail(String email, String password, String blank_msg, String invalid_msg){
+
+        // Step 1: Click on the Sign In button
+        loginPage.clickOnElement(loginPage.sign_in_btn);
+
+        // Step 2: Enter email and click Next
+        loginPage.writeOnElement(loginPage.email_input_box, email);
+        loginPage.clickOnElement(loginPage.next_btn);
+
+        // Step 3: Validate messages based on input
+        if (loginPage.isVisible(loginPage.blank_input_msg)) {
+            Assert.assertEquals(loginPage.getElementText(loginPage.blank_input_msg), blank_msg);
+        }
+
+        if (loginPage.isVisible(loginPage.invalid_email_msg)) {
+            Assert.assertEquals(loginPage.getElementText(loginPage.invalid_email_msg), invalid_msg);
+        }
+
+        // Step 4: Ensure the Next/Login button is still visible (user not logged in)
+        Assert.assertTrue(loginPage.isVisible(loginPage.next_btn));
+    }
+
+     */
+
+
+    }
+
 
 
     /*
@@ -210,4 +243,4 @@ public class TestLoginPage extends DriverSetup {
     }
 
  */
-}
+
