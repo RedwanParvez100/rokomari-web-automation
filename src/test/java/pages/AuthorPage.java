@@ -14,7 +14,7 @@ public class AuthorPage extends BasePage{
     public String author_name1_page2_url = "https://www.rokomari.com/book/author/1/humayun-ahmed?ref=mm_p0&page=2";
     public By author_name1_page2_option = By.xpath("//a[normalize-space()='2']");
 //    public By author_name1_page3_option = By.xpath("//a[normalize-space()='3']");
-    public By author_name1_page2_3rd_book = By.xpath("//img[@alt='Putul image']");
+    public By author_name1_page2_3rd_book = By.xpath("//img[@alt='Himur Hate Koyekti Nilpodmo image']");
     public By author_name1_page_rightward_arrow_option = By.xpath("//i[@class='ion-chevron-right']");
     public By author_name1_all_books_title = By.xpath("//h1[contains(text(),'হুমায়ূন আহমেদ এর বই সমূহ')]");
     public By author_name1_book1 = By.xpath("//img[@alt='Newyork Nilakashe Jakjoke Rod image']");

@@ -2,6 +2,7 @@ package testcases;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import pages.*;
 import utilities.DriverSetup;
@@ -15,7 +16,7 @@ public class TestOrderPage extends DriverSetup {
     OrderPage orderPage = new OrderPage();
 
 
-    @BeforeMethod
+    @BeforeSuite
     public void loadHeaderPageForTest() {
         homePage.loadHomePage();
         homePage.clickOnElement(homePage.pop_up_btn);
@@ -32,9 +33,6 @@ public class TestOrderPage extends DriverSetup {
 
     @Test(priority = 1, description = "Verify that a product is added to the cart after clicking the Add to Cart button")
     public void TestProductAddedTheCart(){
-        booksDisplayPage.safeClick(booksDisplayPage.academic_book1);
-        booksDisplayPage.hoverOnElement(booksDisplayPage.academic_book1_4th_book);
-        orderPage.clickOnElement(orderPage.academic_3rd_book_cart_button);
         Assert.assertTrue(orderPage.isVisible(orderPage.cart_icon));
         Assert.assertEquals(orderPage.getElementText(orderPage.cart_quantity_show),"1");
     }

@@ -23,7 +23,6 @@ public class TestAuthorPage extends DriverSetup {
         homePage.clickOnElement(homePage.pop_up_btn);
     }
 
-
     @Test(priority = 8, description = "Verify clicking an author redirects to that author’s published books page")
     public void TestAuthorPublishedBooksPage() {
         authorPage.hoverOnElement(authorPage.all_author_name_section);
@@ -35,8 +34,6 @@ public class TestAuthorPage extends DriverSetup {
 
     @Test(priority = 9, description = "Verify the next page number option.")
     public void TestPageNumberOption() {
-        authorPage.hoverOnElement(authorPage.all_author_name_section);
-        authorPage.clickOnElement(authorPage.author_name1);
         authorPage.safeClick(authorPage.author_name1_page2_option);
         Assert.assertEquals(authorPage.getElementText(authorPage.author_name1_page2_text),"(Showing 61 to 120 of 506 items)");
         Assert.assertEquals(getDriver().getCurrentUrl(), authorPage.author_name1_page2_url);
@@ -44,8 +41,7 @@ public class TestAuthorPage extends DriverSetup {
 
     @Test(priority = 10, description = "Verify the Rightward Arrow (›) option in pagination bar")
     public void TestRightwardArrowOption() {
-        authorPage.hoverOnElement(authorPage.all_author_name_section);
-        authorPage.clickOnElement(authorPage.author_name1);
+        getDriver().navigate().back();
         authorPage.safeClick(authorPage.author_name1_page_rightward_arrow_option);
         Assert.assertTrue(authorPage.isVisible(authorPage.author_name1_page2_3rd_book));
         Assert.assertEquals(authorPage.getElementText(authorPage.author_name1_page2_text),"(Showing 61 to 120 of 506 items)");
