@@ -18,6 +18,7 @@ public class LoginPage extends BasePage{
     public By sign_in_page_title = By.xpath("//h1[@class='text-start w-fit text-[24px] font-medium']");
     public By blank_input_msg = By.xpath("//p[@class='validation-text']");
     public By invalid_email_msg = By.xpath("//p[@class='validation-text']");
+    public By validation_msg = By.xpath("//p[normalize-space()='Wrong password!']");
 
     public String user_email = "feciwe6718@anlocc.com";
     public String user_password = "1234567Aa";

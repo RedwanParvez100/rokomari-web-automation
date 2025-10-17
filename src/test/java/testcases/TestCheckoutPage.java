@@ -40,7 +40,7 @@ public class TestCheckoutPage extends DriverSetup {
         checkoutPage.hoverOnElement(checkoutPage.bottom_2ndlast_section_book2);
         checkoutPage.clickOnElement(checkoutPage.book2_add_cart);
         authorPage.safeClick(authorPage.author_name1_page2_option);
-        checkoutPage.scrollToAElement(checkoutPage.page2_5th_book, 250);
+        checkoutPage.scrollToAElement(checkoutPage.page2_5th_book, 10);
         checkoutPage.hoverOnElement(checkoutPage.page2_5th_book);
         checkoutPage.clickOnElement(checkoutPage.page2_5th_book_add_cart);
         shoppingCartPage.clickOnElement(shoppingCartPage.shopping_cart_btn);
@@ -48,11 +48,11 @@ public class TestCheckoutPage extends DriverSetup {
         Assert.assertTrue(checkoutPage.isVisible(checkoutPage.order_process_btn));
         Assert.assertTrue(checkoutPage.isEnable(checkoutPage.order_process_btn));
         Assert.assertEquals(checkoutPage.getElementText(checkoutPage.author_name),"হুমায়ূন আহমেদ");
-        Assert.assertEquals(checkoutPage.getElementText(checkoutPage.bottom_2ndlast_section_book2_title),"অচিনপুর");
+        Assert.assertEquals(checkoutPage.getElementText(checkoutPage.bottom_2ndlast_section_book2_title),"হিমু এবং হার্ভার্ড Ph.D বল্টুভাই");
         Assert.assertEquals(checkoutPage.getElementText(checkoutPage.page2_5th_book_title), "হিমু এবং একটি রাশিয়ান পরী");
 //        Assert.assertEquals(checkoutPage.getElementText(checkoutPage.page3_2nd_row_5th_book_title),"হুমায়ূন আহমেদ রচনাবলী - ৪");
-        Assert.assertEquals(shoppingCartPage.getElementText(shoppingCartPage.total_price),"344 Tk.");
-        Assert.assertEquals(shoppingCartPage.getElementText(shoppingCartPage.include_all_charge), "394 TK.");
+        Assert.assertEquals(shoppingCartPage.getElementText(shoppingCartPage.total_price),"431 Tk.");
+        Assert.assertEquals(shoppingCartPage.getElementText(shoppingCartPage.include_all_charge), "481 TK.");
         checkoutPage.clickOnElement(checkoutPage.order_process_btn);
         Assert.assertTrue(checkoutPage.isVisible(checkoutPage.pickup_home));
         Assert.assertTrue(checkoutPage.isEnable(checkoutPage.pickup_home));
@@ -125,7 +125,7 @@ public class TestCheckoutPage extends DriverSetup {
         Assert.assertEquals(checkoutPage.getElementText(checkoutPage.payment_option1), "ক্যাশ অন ডেলিভারি");
         Assert.assertTrue(checkoutPage.isVisible(checkoutPage.confirm_order_btn));
         Assert.assertTrue(checkoutPage.isEnable(checkoutPage.confirm_order_btn));
-        Assert.assertEquals(checkoutPage.getElementText(checkoutPage.confirm_order_btn_total_amount), "অর্ডার নিশ্চিত করুন ৳394");
+        Assert.assertEquals(checkoutPage.getElementText(checkoutPage.confirm_order_btn_total_amount), "অর্ডার নিশ্চিত করুন ৳481");
     }
 
 }

@@ -7,9 +7,9 @@ public class CheckoutPage extends BasePage{
     public By author_name = By.xpath("//div[@id='js--cart-product-item-4883']//p[@class='product-info__author'][contains(text(),'হুমায়ূন আহমেদ')]");
     public By filter_option1 = By.xpath("//label[contains(text(),'সমকালীন উপন্যাস')]");
     public By filter_option3 = By.xpath("//label[@for='rok-filter-categoryIds-1321']");
-    public By bottom_2ndlast_section_book2 = By.xpath("//img[@alt='Achinpur image']");
-    public By bottom_2ndlast_section_book2_title = By.xpath("//a[contains(text(),'অচিনপুর')]");
-    public By book2_add_cart = By.xpath("//div[@title='অচিনপুর হুমায়ূন আহমেদ']//div[1]//div[3]//button[1]");
+    public By bottom_2ndlast_section_book2 = By.xpath("//img[@alt='Himu And Harvard PHD Boltuvai image']");
+    public By bottom_2ndlast_section_book2_title = By.xpath("//a[contains(text(),'হিমু এবং হার্ভার্ড Ph.D বল্টুভাই')]");
+    public By book2_add_cart = By.xpath("//div[@title='হিমু এবং হার্ভার্ড Ph.D বল্টুভাই হুমায়ূন আহমেদ']//div[1]//div[3]//button[1]");
 //    public By page2_option = By.xpath("body > div:nth-child(16) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > section:nth-child(5) > div:nth-child(3) > a:nth-child(3)");
     public By page2_5th_book = By.xpath("//img[@alt='Himu and Ekti Russian Pori image']");
     public By page2_5th_book_title = By.xpath("//a[contains(text(),'হিমু এবং একটি রাশিয়ান পরী')]");
